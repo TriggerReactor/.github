@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":automergeMinor",
+    ":automergePr",
+    ":automergeDigest",
+    ":automergeRequireAllStatusChecks",
+    ":labels(dependencies)",
+    ":prConcurrentLimit10",
+    ":prHourlyLimit4",
+    ":prImmediately",
+    ":rebaseStalePrs",
+    ":enableVulnerabilityAlerts",
+    ":disableDependencyDashboard",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)",
+    ":timezone(Asia/Seoul)",
+    "helpers:pinGitHubActionDigests",
+    "group:allNonMajor"
+  ],
+  "schedule": ["before 12pm on Sunday"],
+  "packageRules:" [
+    {
+      "matchManagers": ["github-actions", "gradle-wrapper"],
+      "groupName": "gradle and github actions"
+    },
+    {
+      "matchDepTypes": ["plugin"],
+      "groupName": "gradle and github actions"
+    }
+  ],
+  "pinDigest": {
+    "schedule": [
+      "at any time"
+    ],
+    "automerge": true,
+    "automergeType": "pr"
+  }
+}
